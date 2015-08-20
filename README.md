@@ -6,6 +6,7 @@ Starting point for Arduino development using CMake
 - http://www.arduino.cc/playground/Code/CmakeBuild
 - http://www.tmpsantos.com.br/en/2010/12/arduino-uno-ubuntu-cmake/
 - http://forum.arduino.cc/index.php?topic=244741.0
+
 #Usage
 1. Check the CMakeList.txt 
   * Update the project name
