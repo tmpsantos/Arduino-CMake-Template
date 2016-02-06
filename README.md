@@ -14,7 +14,7 @@ Starting point for Arduino development using CMake
   * Update the Arduino installation directory
   
 2. Check the included `make/arduino_*.cmake`
-  * Basic information for new board configurations can be found i`n the `boards.txt` file from the Arduino installation.
+  * Basic information for new board configurations can be found in the `boards.txt` file from the Arduino installation.
   * Using the original IDE with verbose enabled helps you to tune the command parameters
   
 #Updates
