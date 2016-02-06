@@ -2,7 +2,11 @@ project(MYPROJECT)
 
 cmake_minimum_required(VERSION 2.6)
 
-include(${CMAKE_SOURCE_DIR}/scripts/arduino_uno.cmake)
+
+set(ARDUINO_ROOT "$ENV{HOME}/opt/arduino")
+
+include(${CMAKE_SOURCE_DIR}/cmake/arduino-1.6.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake/arduino_uno.cmake)
 
 set(MYPROJECT_SOURCE_FILES
     ${CMAKE_SOURCE_DIR}/src/main.cpp
