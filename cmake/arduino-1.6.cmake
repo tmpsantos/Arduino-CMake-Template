@@ -80,7 +80,7 @@ if (AVROBJCOPY AND AVRDUDE)
 
     if (ARDUINO_PROTOCOL STREQUAL "usbasp")
         add_custom_command(TARGET flash POST_BUILD
-                COMMAND ${AVRDUDE} -C${AVRDUDE_CONFIG} -v -p${ARDUINO_MCU} -c usbasp -D -Uflash:w:firmware.hex:i
+                COMMAND ${AVRDUDE} -C${AVRDUDE_CONFIG} -v -p${ARDUINO_MCU} -c usbasp -Uflash:w:firmware.hex:i
                 )
     else ()
         add_custom_command(TARGET flash POST_BUILD
