@@ -29,3 +29,4 @@ Matthijs Oosterhoff
 - Moved inclusion of `.cmake` files to `CMakeLists`
 - Use the compilers and tools provided by the Arduino installation instead of assuming the user has installed them separately.
 - Updated the included Arduino sources, because it didn't work.
+- Added CMake target to flash using USBasp programmer.
