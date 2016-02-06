@@ -29,28 +29,32 @@ include_directories(${ARDUINO_PINS_DIR})
 include_directories(${ARDUINO_CORE_DIR})
 
 set(ARDUINO_SOURCE_FILES
-	${ARDUINO_CORE_DIR}/wiring_pulse.S
-	${ARDUINO_CORE_DIR}/wiring_digital.c
-	${ARDUINO_CORE_DIR}/wiring.c
-	${ARDUINO_CORE_DIR}/WInterrupts.c
-	${ARDUINO_CORE_DIR}/wiring_pulse.c
-	${ARDUINO_CORE_DIR}/wiring_shift.c
-	${ARDUINO_CORE_DIR}/hooks.c 
-	${ARDUINO_CORE_DIR}/wiring_analog.c
-	${ARDUINO_CORE_DIR}/WMath.cpp
-	${ARDUINO_CORE_DIR}/IPAddress.cpp
-	${ARDUINO_CORE_DIR}/Tone.cpp
-	${ARDUINO_CORE_DIR}/HardwareSerial2.cpp
-	${ARDUINO_CORE_DIR}/HID.cpp
-	${ARDUINO_CORE_DIR}/Print.cpp
-	${ARDUINO_CORE_DIR}/new.cpp
-	${ARDUINO_CORE_DIR}/HardwareSerial0.cpp
-	${ARDUINO_CORE_DIR}/HardwareSerial.cpp
-	${ARDUINO_CORE_DIR}/WString.cpp
-	${ARDUINO_CORE_DIR}/abi.cpp
-	${ARDUINO_CORE_DIR}/USBCore.cpp
-	${ARDUINO_CORE_DIR}/Stream.cpp
-	${ARDUINO_CORE_DIR}/CDC.cpp
+		${ARDUINO_CORE_DIR}/wiring_pulse.S
+
+		${ARDUINO_CORE_DIR}/WInterrupts.c
+		${ARDUINO_CORE_DIR}/hooks.c
+		${ARDUINO_CORE_DIR}/wiring.c
+		${ARDUINO_CORE_DIR}/wiring_analog.c
+		${ARDUINO_CORE_DIR}/wiring_digital.c
+		${ARDUINO_CORE_DIR}/wiring_pulse.c
+		${ARDUINO_CORE_DIR}/wiring_shift.c
+
+		${ARDUINO_CORE_DIR}/CDC.cpp
+		${ARDUINO_CORE_DIR}/HardwareSerial.cpp
+		${ARDUINO_CORE_DIR}/HardwareSerial0.cpp
+		${ARDUINO_CORE_DIR}/HardwareSerial1.cpp
+		${ARDUINO_CORE_DIR}/HardwareSerial2.cpp
+		${ARDUINO_CORE_DIR}/HardwareSerial3.cpp
+		${ARDUINO_CORE_DIR}/IPAddress.cpp
+		${ARDUINO_CORE_DIR}/PluggableUSB.cpp
+		${ARDUINO_CORE_DIR}/Print.cpp
+		${ARDUINO_CORE_DIR}/Stream.cpp
+		${ARDUINO_CORE_DIR}/Tone.cpp
+		${ARDUINO_CORE_DIR}/USBCore.cpp
+		${ARDUINO_CORE_DIR}/WMath.cpp
+		${ARDUINO_CORE_DIR}/WString.cpp
+		${ARDUINO_CORE_DIR}/abi.cpp
+		${ARDUINO_CORE_DIR}/new.cpp
 )
 
 set(PORT $ENV{ARDUINO_PORT})
