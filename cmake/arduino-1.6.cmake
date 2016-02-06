@@ -8,8 +8,9 @@
 
 
 set(CMAKE_SYSTEM_NAME Generic)
-set(CMAKE_C_COMPILER avr-gcc)
-set(CMAKE_CXX_COMPILER avr-g++)
+set(CMAKE_C_COMPILER ${ARDUINO_ROOT}/hardware/tools/avr/bin/avr-gcc)
+set(CMAKE_ASM_COMPILER ${ARDUINO_ROOT}/hardware/tools/avr/bin/avr-gcc)
+set(CMAKE_CXX_COMPILER ${ARDUINO_ROOT}/hardware/tools/avr/bin/avr-g++)
 set(CMAKE_SHARED_LIBRARY_LINK_CXX_FLAGS "")
 enable_language(ASM)
 
@@ -57,8 +58,8 @@ if (NOT PORT)
     set(PORT ${ARDUINO_PORT})
 endif()
 
-find_program(AVROBJCOPY "avr-objcopy")
-find_program(AVRDUDE "avrdude")
+find_program(AVROBJCOPY ${ARDUINO_ROOT}/hardware/tools/avr/bin/avr-objcopy)
+find_program(AVRDUDE ${ARDUINO_ROOT}/hardware/tools/avr/bin/avrdude)
 
 # FIXME: Forcing target name to be "firmware"
 if(AVROBJCOPY AND AVRDUDE)
