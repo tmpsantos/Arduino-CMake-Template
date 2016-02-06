@@ -23,7 +23,6 @@ set(CMAKE_ASM_FLAGS "-mmcu=${ARDUINO_MCU}")
 
 set(ARDUINO_CORE_DIR "${ARDUINO_ROOT}/hardware/arduino/avr/cores/arduino/")
 set(ARDUINO_PINS_DIR "${ARDUINO_ROOT}/hardware/arduino/avr/variants/${ARDUINO_VARIANT}")
-set(ARDUINO_PINS_DIR "${ARDUINO_ROOT}/hardware/arduino/avr/variants/${ARDUINO_VARIANT}")
 set(AVRDUDE_CONFIG "${ARDUINO_ROOT}/hardware/tools/avr/etc/avrdude.conf")
 
 include_directories(${ARDUINO_PINS_DIR})
