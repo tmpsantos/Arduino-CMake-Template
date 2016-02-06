@@ -3,11 +3,11 @@
 void loop() {
     Serial.println("LED on");
     digitalWrite(13, HIGH);   // Set the LED on
-    delay(1000);              // Wait for three seconds
+    delay(3000);              // Wait for three seconds
 
     Serial.println("LED off");
     digitalWrite(13, LOW);    // Set the LED off
-    delay(1000);              // Wait for three seconds
+    delay(3000);              // Wait for three seconds
 }
 
 int main(void)
