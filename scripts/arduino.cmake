@@ -8,49 +8,50 @@
 
 
 set(CMAKE_SYSTEM_NAME Generic)
+set(CMAKE_ASM_COMPILER avr-gcc)
 set(CMAKE_C_COMPILER avr-gcc)
 set(CMAKE_CXX_COMPILER avr-g++)
 set(CMAKE_SHARED_LIBRARY_LINK_CXX_FLAGS "")
 enable_language(ASM)
 
 # C only fine tunning
-set(TUNNING_FLAGS "-funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums") 
+set(TUNNING_FLAGS "-funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums")
 
 set(CMAKE_CXX_FLAGS "-mmcu=${ARDUINO_MCU} -DF_CPU=${ARDUINO_FCPU} -Os")
 set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS} ${TUNNING_FLAGS} -Wall -Wstrict-prototypes -std=gnu99")
 
+# Find arduino root path
+set(ARDUINO_ROOT_SEARCH_PATHS
+    /usr/share/arduino
+    /opt/local/arduino
+    /opt/arduino
+    /usr/local/share/arduino
+    /Applications/Arduino.app/Contents/Java
+    /Applications/Arduino.app/Contents/Resources/Java
+)
+list(APPEND ARDUINO_ROOT_SEARCH_PATHS ${ARDUINO_ROOT} ${ARDUINO_SDK_PATH})
+unset(ARDUINO_ROOT)
+find_path(ARDUINO_ROOT
+    NAMES lib/version.txt
+    PATHS ${ARDUINO_ROOT_SEARCH_PATHS})
+if(NOT ARDUINO_ROOT)
+    message(FATAL_ERROR "Could not find Arduino SDK root folder. Set the variable ARDUINO_ROOT in your CMakeList.txt file before including Arduino.cmake")
+endif()
+
 set(ARDUINO_CORE_DIR "${ARDUINO_ROOT}/hardware/arduino/avr/cores/arduino/")
-set(ARDUINO_PINS_DIR "${ARDUINO_ROOT}/hardware/arduino/avr/variants/${ARDUINO_BOARD}")
 set(ARDUINO_PINS_DIR "${ARDUINO_ROOT}/hardware/arduino/avr/variants/${ARDUINO_BOARD}")
 set(AVRDUDE_CONFIG "${ARDUINO_ROOT}/hardware/tools/avr/etc/avrdude.conf")
 
 include_directories(${ARDUINO_PINS_DIR})
 include_directories(${ARDUINO_CORE_DIR})
 
-set(ARDUINO_SOURCE_FILES
-	${ARDUINO_CORE_DIR}/wiring_pulse.S
-	${ARDUINO_CORE_DIR}/wiring_digital.c
-	${ARDUINO_CORE_DIR}/wiring.c
-	${ARDUINO_CORE_DIR}/WInterrupts.c
-	${ARDUINO_CORE_DIR}/wiring_pulse.c
-	${ARDUINO_CORE_DIR}/wiring_shift.c
-	${ARDUINO_CORE_DIR}/hooks.c 
-	${ARDUINO_CORE_DIR}/wiring_analog.c
-	${ARDUINO_CORE_DIR}/WMath.cpp
-	${ARDUINO_CORE_DIR}/IPAddress.cpp
-	${ARDUINO_CORE_DIR}/Tone.cpp
-	${ARDUINO_CORE_DIR}/HardwareSerial2.cpp
-	${ARDUINO_CORE_DIR}/HID.cpp
-	${ARDUINO_CORE_DIR}/Print.cpp
-	${ARDUINO_CORE_DIR}/new.cpp
-	${ARDUINO_CORE_DIR}/HardwareSerial0.cpp
-	${ARDUINO_CORE_DIR}/HardwareSerial.cpp
-	${ARDUINO_CORE_DIR}/WString.cpp
-	${ARDUINO_CORE_DIR}/abi.cpp
-	${ARDUINO_CORE_DIR}/USBCore.cpp
-	${ARDUINO_CORE_DIR}/Stream.cpp
-	${ARDUINO_CORE_DIR}/CDC.cpp
-)
+# core source
+file(GLOB ARDUINO_SOURCE_FILES
+	${ARDUINO_CORE_DIR}/*.S
+	${ARDUINO_CORE_DIR}/*.c
+	${ARDUINO_CORE_DIR}/*.cpp)
+# remove main
+list(REMOVE_ITEM ARDUINO_SOURCE_FILES "${ARDUINO_CORE_DIR}/main.cpp")
 
 set(PORT $ENV{ARDUINO_PORT})
 if (NOT PORT)
